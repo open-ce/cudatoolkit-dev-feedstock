@@ -1,39 +1,50 @@
 {% set name = "cudatoolkit-dev" %}
-{% set release = "11.4" %}
-{% set version_build = "0" %}
-{% set driver_version = "470.42.01" %}
-{% set win_driver_version = "471.11" %}
+{% set major_minor = major_minor_ver|default("11.4.4") %}
+
+{% set cudavars = {
+  "11.2.2": {
+    "version": "11.2.2",
+    "version_patch": {
+      "linux64": "460.32.03",
+      "ppc64le": "460.32.03",
+    },
+  },
+   "11.4.4": {
+    "version": "11.4.4",
+    "version_patch": {
+      "linux64": "470.82.01",
+      "ppc64le": "470.82.01",
+    },
+  },
+}
+%}
+
+{% set release = cudavars[major_minor]["version"] %}
+{% set driver_version = cudavars[major_minor]["version_patch"]["linux64"] %}  # [linux64]
+{% set driver_version = cudavars[major_minor]["version_patch"]["ppc64le"] %}  # [ppc64le]
 
 package:
   name: {{ name|lower }}
-  version: {{ release }}.{{ version_build }}
+  version: {{ release }}
 
 source:
   path: ./
 
 build:
-  script: python build.py {{ release }} {{ version_build }} {{ driver_version }}  # [linux]
-  script: python build.py {{ release }} {{ version_build }} {{ win_driver_version }}  # [win]
-  number: 5
-  skip: True  # [osx]
+  script: python build.py {{ release }} {{ driver_version }}  # [linux]
+  number: 1
 
 requirements:
   build:
     - python
   host:
     - wget  # [linux]
-    - curl  # [win]
-    - 7zip  # [win]
   run:
     - python
-    - curl  # [win]
-    - 7zip  # [win]
 test:
   requires:
     - numba
     - wget  # [linux]
-    - curl  # [win]
-    - 7zip  # [win]
     - {{ compiler('c') }}
 
 about:
@@ -56,8 +67,4 @@ about:
 
 extra:
   recipe-maintainers:
-    - andersy005
-    - scopatz
-    - xmnlab
-    - AgrawalAmey
-    - kidfisch
+    - open-ce/open-ce-dev-team

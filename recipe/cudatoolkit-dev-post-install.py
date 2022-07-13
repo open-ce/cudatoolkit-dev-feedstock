@@ -257,7 +257,6 @@ def set_config():
     cudatoolkit["version"] = os.environ["PKG_VERSION"]
     cudatoolkit["name"] = os.environ["PKG_NAME"]
     cudatoolkit["buildnum"] = os.environ["PKG_BUILDNUM"]
-    cudatoolkit["version_build"] = extra_args["version_build"]
     cudatoolkit["driver_version"] = extra_args["driver_version"]
     cudatoolkit["release"] = extra_args["release"]
 
@@ -277,9 +276,9 @@ def set_config():
     cudatoolkit["patch_url_ext"] = f""
 
     if sys.platform.startswith("win"):
-        cudatoolkit["blob"] = f'cuda_{cudatoolkit["version"]}_{cudatoolkit["driver_version"]}_win10.exe'
+        cudatoolkit["blob"] = f'cuda_{cudatoolkit["version"]}_{cudatoolkit["driver_version"]}_linux.exe'
     else:
-        cudatoolkit["blob"] = f'cuda_{cudatoolkit["version"]}_{cudatoolkit["driver_version"]}_linux.run'
+        cudatoolkit["blob"] = f'cuda_{cudatoolkit["version"]}_{cudatoolkit["driver_version"]}_linux_ppc64le.run'
 
     return cudatoolkit
 
