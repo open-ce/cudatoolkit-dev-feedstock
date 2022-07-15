@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+# Originally forked from https://github.com/conda-forge/cudatoolkit-dev-feedstock
 Adapted from https://github.com/numba/conda-recipe-cudatoolkit
 
 BSD 2-Clause License

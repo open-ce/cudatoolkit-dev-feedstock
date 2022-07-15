@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# Originally forked from https://github.com/conda-forge/cudatoolkit-dev-feedstock
+# Distributed under the BSD-3-Clause license
+# Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
+
 import argparse
 import json
 import os
