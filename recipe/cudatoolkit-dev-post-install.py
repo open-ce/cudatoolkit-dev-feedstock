@@ -275,8 +275,8 @@ def set_config():
     cudatoolkit["installers_url_ext"] = f"local_installers/"
     cudatoolkit["patch_url_ext"] = f""
 
-    if sys.platform.startswith("win"):
-        cudatoolkit["blob"] = f'cuda_{cudatoolkit["version"]}_{cudatoolkit["driver_version"]}_linux.exe'
+    if platform.uname().machine == "x86_64":
+        cudatoolkit["blob"] = f'cuda_{cudatoolkit["version"]}_{cudatoolkit["driver_version"]}_linux.run'
     else:
         cudatoolkit["blob"] = f'cuda_{cudatoolkit["version"]}_{cudatoolkit["driver_version"]}_linux_ppc64le.run'
 
