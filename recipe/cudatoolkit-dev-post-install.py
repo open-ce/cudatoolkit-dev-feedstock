@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+# Originally forked from https://github.com/conda-forge/cudatoolkit-dev-feedstock
 Adapted from https://github.com/numba/conda-recipe-cudatoolkit
 
 BSD 2-Clause License
@@ -257,7 +258,6 @@ def set_config():
     cudatoolkit["version"] = os.environ["PKG_VERSION"]
     cudatoolkit["name"] = os.environ["PKG_NAME"]
     cudatoolkit["buildnum"] = os.environ["PKG_BUILDNUM"]
-    cudatoolkit["version_build"] = extra_args["version_build"]
     cudatoolkit["driver_version"] = extra_args["driver_version"]
     cudatoolkit["release"] = extra_args["release"]
 
@@ -276,10 +276,10 @@ def set_config():
     cudatoolkit["installers_url_ext"] = f"local_installers/"
     cudatoolkit["patch_url_ext"] = f""
 
-    if sys.platform.startswith("win"):
-        cudatoolkit["blob"] = f'cuda_{cudatoolkit["version"]}_{cudatoolkit["driver_version"]}_win10.exe'
-    else:
+    if platform.uname().machine == "x86_64":
         cudatoolkit["blob"] = f'cuda_{cudatoolkit["version"]}_{cudatoolkit["driver_version"]}_linux.run'
+    else:
+        cudatoolkit["blob"] = f'cuda_{cudatoolkit["version"]}_{cudatoolkit["driver_version"]}_linux_ppc64le.run'
 
     return cudatoolkit
 

@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# Originally forked from https://github.com/conda-forge/cudatoolkit-dev-feedstock
+# Distributed under the BSD-3-Clause license
+# Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
+
 import argparse
 import json
 import os
@@ -41,7 +45,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build script for cudatoolkit-dev")
 
     parser.add_argument("release", action="store", type=str)
-    parser.add_argument("version_build", action="store", type=str)
     parser.add_argument("driver_version", action="store", type=str)
     results = parser.parse_args()
     args = vars(results)
