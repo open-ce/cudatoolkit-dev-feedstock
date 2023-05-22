@@ -36,7 +36,7 @@ source:
 
 build:
   script: python build.py {{ release }} {{ driver_version }}  # [linux]
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -48,7 +48,7 @@ requirements:
     - wget
 test:
   requires:
-    - numba
+    - numba <0.57
     - wget  # [linux]
     - {{ compiler('c') }}
 
