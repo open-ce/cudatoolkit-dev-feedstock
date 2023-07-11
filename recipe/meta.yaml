@@ -3,7 +3,7 @@
 # Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
 
 {% set name = "cudatoolkit-dev" %}
-{% set major_minor = major_minor_ver|default("11.8.0") %}
+{% set major_minor = major_minor_ver|default("12.2.0") %}
 
 {% set cudavars = {
   "11.2.2": {
@@ -27,6 +27,21 @@
       "ppc64le": "520.61.05",
     },
   },
+   "11.8.0": {
+    "version": "11.8.0",
+    "version_patch": {
+      "linux64": "520.61.05",
+      "ppc64le": "520.61.05",
+    },
+  },
+   "12.2.0": {
+    "version": "12.2.0",
+    "version_patch": {
+      "linux64": "535.54.03",
+      "ppc64le": "535.54.03",
+    },
+  },
+
 }
 %}
 
@@ -43,7 +58,7 @@ source:
 
 build:
   script: python build.py {{ release }} {{ driver_version }}  # [linux]
-  number: 4
+  number: 1
 
 requirements:
   build:
